@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,12 @@ public class CustomerRestController {
 	@PostMapping("/customers")
 	public Customer addCustomer(@RequestBody Customer c) {
 		c.setId(0);
+		customerService.saveCustomer(c);
+		return c;
+	}
+	
+	@PutMapping("/customers")
+	public Customer updateCustomer(@RequestBody Customer c) {
 		customerService.saveCustomer(c);
 		return c;
 	}
